@@ -1,0 +1,29 @@
+{
+  "name": "mirador-share-workspace",
+  "version": "0.1.0",
+  "description": "A Mirador plugin that allows users to share workspaces across workstations.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UCLALibrary/mirador-share-workspace.git"
+  },
+  "keywords": [
+    "iiif",
+    "mirador",
+    "mirador-plugins"
+  ],
+  "author": "Mark Allen Matney, Jr.",
+  "bugs": {
+    "url": "https://github.com/UCLALibrary/mirador-share-workspace/issues"
+  },
+  "homepage": "https://github.com/UCLALibrary/mirador-share-workspace#readme",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.0"
+  }
+}
