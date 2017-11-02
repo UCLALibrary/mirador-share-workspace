@@ -4,7 +4,9 @@ When collaborating with others, it is useful to be able to share workspaces acro
 
 ## Setup
 
-Clone this repository and do:
+You can find production-ready build artifacts inside the 'dist/' folder.
+
+Alternatively, clone this repository and do:
 
 ```bash
 npm install
