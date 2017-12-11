@@ -1,6 +1,6 @@
 (function($) {
 
-  $.UploadWorkspacePanel = function(options) {
+  $.LoadWorkspacePanel = function(options) {
 
     jQuery.extend(true, this, {
       element: null,
@@ -11,10 +11,10 @@
 
   };
 
-  $.UploadWorkspacePanel.prototype = {
+  $.LoadWorkspacePanel.prototype = {
     init: function () {
       this.element = jQuery(this.template()).appendTo(this.appendTo);
-      
+
       this.bindEvents();
       this.listenForActions();
     },
@@ -22,7 +22,7 @@
     listenForActions: function() {
       var _this = this;
       // handle subscribed events
-      _this.eventEmitter.subscribe('uploadWorkspacePanelVisible.set', function(_, stateValue) {
+      _this.eventEmitter.subscribe('loadWorkspacePanelVisible.set', function(_, stateValue) {
         if (stateValue) { _this.show(); return; }
         _this.hide();
       });
@@ -31,7 +31,7 @@
     bindEvents: function() {
       var _this = this;
 
-      _this.element.find('#upload-workspace-file').on('change', function(event) {
+      _this.element.find('#load-workspace-file').on('change', function(event) {
         // get file contents
         var file = event.target.files[0];
 	    var fr = new FileReader();
@@ -60,10 +60,10 @@
     },
 
     template: $.Handlebars.compile([
-       '<div id="upload-workspace-panel">',
-         '<h3>{{t "uploadWorkspace"}}</h3>',
+       '<div id="load-workspace-panel">',
+         '<h3>{{t "loadWorkspace"}}</h3>',
          '<span>',
-           '<input id="upload-workspace-file" type="file"></input>',
+           '<input id="load-workspace-file" type="file"></input>',
          '</span>',
        '</div>'
     ].join(''))

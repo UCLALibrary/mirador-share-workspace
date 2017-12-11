@@ -1,4 +1,4 @@
-#upload-workspace-panel, #download-workspace-panel  {
+#load-workspace-panel, #save-workspace-panel  {
   position: absolute;
   height: 20%; 
   width: 30%; 
@@ -11,16 +11,16 @@
   padding: 10px;
 }
 
-#upload-workspace-panel span, #download-workspace-panel span {
+#load-workspace-panel span, #save-workspace-panel span {
   width: 100%;
   padding-left: 2%;
 }
 
-#upload-workspace-panel input, #download-workspace-panel input {
+#load-workspace-panel input, #save-workspace-panel input {
   width: 80%;
   margin-right: 3px;
 }
 
-#upload-workspace-panel h3, #download-workspace-panel h3 {
+#load-workspace-panel h3, #save-workspace-panel h3 {
   text-align: center;
 }

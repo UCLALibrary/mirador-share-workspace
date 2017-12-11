@@ -1,6 +1,6 @@
 (function($) {
 
-  $.DownloadWorkspacePanel = function(options) {
+  $.SaveWorkspacePanel = function(options) {
 
     jQuery.extend(true, this, {
       state: null,
@@ -13,10 +13,10 @@
 
   };
 
-  $.DownloadWorkspacePanel.prototype = {
+  $.SaveWorkspacePanel.prototype = {
     init: function () {
       this.element = jQuery(this.template()).appendTo(this.appendTo);
-      
+
       this.bindEvents();
       this.listenForActions();
     },
@@ -24,7 +24,7 @@
     listenForActions: function() {
       var _this = this;
       // handle subscribed events
-      _this.eventEmitter.subscribe('downloadWorkspacePanelVisible.set', function(_, stateValue) {
+      _this.eventEmitter.subscribe('saveWorkspacePanelVisible.set', function(_, stateValue) {
         if (stateValue) { _this.show(); return; }
         _this.hide();
       });
@@ -33,23 +33,18 @@
     bindEvents: function() {
       var _this = this;
 
-      _this.element.find('.mirador-icon-download-workspace-file').off('click').on('click', function(event) {
-        var input = jQuery('#download-workspace-file').val();
-        var link;
+      _this.element.find('.mirador-icon-save-workspace-file').off('click').on('click', function(event) {
+        var input = jQuery('#save-workspace-file').val();
+        var data;
 
         // TODO: do better input validation?
         if (input.length > 0) {
 
-          // create a fake link and click it
-          link = document.createElement('a');
-          link.href = "data:text/json;charset=utf8," + encodeURIComponent(JSON.stringify(_this.state.cleanup(_this.state.get('currentConfig'))));
-          link.download = input + '.json';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-           
-          // make the text field blank and submit the saved value to the lockController
-          jQuery('#download-workspace-file').val('');
+          var data = JSON.stringify(_this.state.cleanup(_this.state.get('currentConfig')));
+
+          download(data, input + '_mirador_workspace.json', 'text/json');
+          // make the text field blank
+          jQuery('#save-workspace-file').val('');
         }
         else {
           alert('Please choose a name with non-zero length.');
@@ -66,15 +61,15 @@
     },
 
     template: $.Handlebars.compile([
-       '<div id="download-workspace-panel">',
-         '<h3>{{t "downloadWorkspace"}}</h3>',
+       '<div id="save-workspace-panel">',
+         '<h3>{{t "saveWorkspace"}}</h3>',
          '<span>{{t "saveAs"}}: ',
-           '<input id="download-workspace-file" type="text">',
-           '<a href="javascript:;" class="mirador-btn mirador-icon-download-workspace-file">',
+           '<input id="save-workspace-file" type="text">',
+           '<a href="javascript:;" class="mirador-btn mirador-icon-save-workspace-file">',
              '<i class="fa fa-download fa-lg"></i>',
            '</a>',
          '</span>',
-         '<p>{{t "downloadWorkspaceWarning"}}</p>',
+         '<p>{{t "saveWorkspaceWarning"}}</p>',
        '</div>'
     ].join(''))
   };

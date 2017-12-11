@@ -4,25 +4,25 @@ var MiradorShareWorkspace = {
     locales: {
         en: {
             translation: {
-                'downloadWorkspace': 'Download Workspace',
-                'downloadWorkspaceTooltip': 'Sace this workspace to your desktop',
-                'downloadWorkspaceWarning': 'Please do not give the filename an extension. It will be in JSON format, and a .json extension is automatically appended to the filename.',
+                'saveWorkspace': 'Save Workspace',
+                'saveWorkspaceTooltip': 'Save this workspace to your desktop',
+                'saveWorkspaceWarning': 'Please do not give the filename an extension. It will be in JSON format, and a .json extension is automatically appended to the filename.',
                 'saveAs': 'Save As',
-                'uploadWorkspace': 'Upload Workspace',
-                'uploadWorkspaceTooltip': 'Restore a previously downloaded workspace',
+                'loadWorkspace': 'Load Workspace',
+                'loadWorkspaceTooltip': 'Restore a previously downloaded workspace from a file on your desktop',
             }
         }
     },
 
     template: Mirador.Handlebars.compile([
         '<li>',
-            '<a href="javascript:;" class="download-workspace mainmenu-button" title="{{t "downloadWorkspaceTooltip"}}">',
-                '<span class="fa fa-download fa-lg fa-fw"></span> {{t "downloadWorkspace"}}',
+            '<a href="javascript:;" class="save-workspace mainmenu-button" title="{{t "saveWorkspaceTooltip"}}">',
+                '<span class="fa fa-download fa-lg fa-fw"></span> {{t "saveWorkspace"}}',
             '</a>',
         '</li>',
         '<li>',
-            '<a href="javascript:;" class="upload-workspace mainmenu-button" title="{{t "uploadWorkspaceTooltip"}}">',
-                '<span class="fa fa-upload fa-lg fa-fw"></span> {{t "uploadWorkspace"}}',
+            '<a href="javascript:;" class="load-workspace mainmenu-button" title="{{t "loadWorkspaceTooltip"}}">',
+                '<span class="fa fa-upload fa-lg fa-fw"></span> {{t "loadWorkspace"}}',
             '</a>',
         '</li>',
     ].join('')),
@@ -52,8 +52,8 @@ var MiradorShareWorkspace = {
                 // add button (the compiled template) to the DOM
                 this.element.find('.mirador-main-menu').prepend(self.template());
 
-                this.element.find('.download-workspace').on('click', function() {
-                    _this.eventEmitter.publish('toggleDownloadWorkspacePanel');
+                this.element.find('.save-workspace').on('click', function() {
+                    _this.eventEmitter.publish('toggleSaveWorkspacePanel');
                     //remove active class from other buttons
                     _this.element.find('.sync-window-groups').removeClass('active');
                     if (jQuery(this).hasClass('active')) {
@@ -63,8 +63,8 @@ var MiradorShareWorkspace = {
                     }
                 });
 
-                this.element.find('.upload-workspace').on('click', function() {
-                    _this.eventEmitter.publish('toggleUploadWorkspacePanel');
+                this.element.find('.load-workspace').on('click', function() {
+                    _this.eventEmitter.publish('toggleLoadWorkspacePanel');
                     //remove active class from other buttons
                     _this.element.find('.sync-window-groups').removeClass('active');
                     if (jQuery(this).hasClass('active')) {
@@ -90,13 +90,13 @@ var MiradorShareWorkspace = {
                 setupViewer.apply(this, arguments);
 
                 if (this.mainMenu) {
-                    this.downloadWorkspacePanel = new $.DownloadWorkspacePanel({
+                    this.saveWorkspacePanel = new $.SaveWorkspacePanel({
                         appendTo: this.element.find('.mirador-viewer'),
                         state: this.state,
                         eventEmitter: this.eventEmitter
                     });
 
-                    this.uploadWorkspacePanel = new $.UploadWorkspacePanel({
+                    this.loadWorkspacePanel = new $.LoadWorkspacePanel({
                         appendTo: this.element.find('.mirador-viewer'),
                         state: this.state,
                         eventEmitter: this.eventEmitter
@@ -108,28 +108,28 @@ var MiradorShareWorkspace = {
                 var _this = this;
                 listenForActions.apply(this, arguments);
 
-                this.eventEmitter.subscribe('toggleDownloadWorkspacePanel', function(event) {
-                    _this.toggleDownloadWorkspacePanel();
+                this.eventEmitter.subscribe('toggleSaveWorkspacePanel', function(event) {
+                    _this.toggleSaveWorkspacePanel();
                 });
 
-                this.eventEmitter.subscribe('toggleUploadWorkspacePanel', function(event) {
-                    _this.toggleUploadWorkspacePanel();
+                this.eventEmitter.subscribe('toggleLoadWorkspacePanel', function(event) {
+                    _this.toggleLoadWorkspacePanel();
                 });
             };
 
-            $.Viewer.prototype.toggleDownloadWorkspacePanel = function() {
-                this.toggleOverlay('downloadWorkspacePanelVisible');
+            $.Viewer.prototype.toggleSaveWorkspacePanel = function() {
+                this.toggleOverlay('saveWorkspacePanelVisible');
             };
 
-            $.Viewer.prototype.toggleUploadWorkspacePanel = function() {
-                this.toggleOverlay('uploadWorkspacePanelVisible');
+            $.Viewer.prototype.toggleLoadWorkspacePanel = function() {
+                this.toggleOverlay('loadWorkspacePanelVisible');
             };
 
             $.Viewer = function() {
                 return new constructor(jQuery.extend(true, Array.prototype.slice.call(arguments)[0], {
                     overlayStates: {
-                        'downloadWorkspacePanelVisible': false,
-                        'uploadWorkspacePanelVisible': false
+                        'saveWorkspacePanelVisible': false,
+                        'loadWorkspacePanelVisible': false
                     }
                 }));
             };
