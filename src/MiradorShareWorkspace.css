@@ -1,6 +1,6 @@
 #load-workspace-panel, #save-workspace-panel  {
   position: absolute;
-  height: 20%; 
+  //height: 20%; 
   width: 30%; 
   background-color: rgba(255,255,255,0.94);
   display: none;
@@ -17,10 +17,17 @@
 }
 
 #load-workspace-panel input, #save-workspace-panel input {
-  width: 80%;
   margin-right: 3px;
+}
+
+#load-workspace-panel input[type="text"], #save-workspace-panel input[type="text"] {
+  width: 80%;
 }
 
 #load-workspace-panel h3, #save-workspace-panel h3 {
   text-align: center;
+}
+
+#load-workspace-panel #confirm-new-workspace {
+  display: none;
 }

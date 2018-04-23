@@ -10,6 +10,11 @@ var MiradorShareWorkspace = {
                 'saveAs': 'Save As',
                 'loadWorkspace': 'Load Workspace',
                 'loadWorkspaceTooltip': 'Restore a previously downloaded workspace from a file on your desktop',
+                'newWorkspace': 'New Workspace',
+                'newWorkspaceWarning': 'Only one workspace may be saved to this web browser\'s internal storage at a time. You can clear that workspace here. Note that you may still save as many workspaces as you like to your workstation using the "Save Workspace" function, which can be loaded as needed (doing so will overwrite the workspace that is saved to this browser\'s internal storage).',
+                'newWorkspaceClear': 'Clear Workspace',
+                'newWorkspaceConfirm': 'Confirm',
+                'newWorkspaceCancel': 'Cancel'
             }
         }
     },
