@@ -2,6 +2,12 @@
 
 When collaborating with others, it is useful to be able to share workspaces across different computers. This Mirador plugin enables this.
 
+## Back-end requirements and what to do when your app has no back-end
+
+Since the implementation of Mirador's `saveSession` configuration option [is buggy](https://github.com/ProjectMirador/mirador/issues/746), this plugin assumes a back-end that can handle POST requests encoded as `multipart/form-data` at the same route as the Mirador viewer. That back-end can then inject the serialized state into the Mirador constructor in the viewer page's `<script>` tag. The POST route can be configured by modifying the template in `loadWorkspacePanel.js`.
+
+If you would like to use this plugin with the `saveSession` option (presumably in an app with no back-end), please use the `savesession-on` branch of this repository.
+
 ## Setup
 
 You can find production-ready build artifacts inside the 'dist/' folder.
