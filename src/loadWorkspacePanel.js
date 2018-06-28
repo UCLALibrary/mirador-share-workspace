@@ -30,25 +30,26 @@
 
     bindEvents: function() {
       var _this = this;
-
+/*
       _this.element.find('#load-workspace-file').on('change', function(event) {
         // get file contents
         var file = event.target.files[0];
-	    var fr = new FileReader();
+	      var fr = new FileReader();
         var sessionID;
         fr.onload = function(event) {
-	      // generate new session ID
-	      sessionID = $.genUUID();
+          // generate new session ID
+          sessionID = $.genUUID();
 
-          // load file contents into local storage, keyed by sessionID
-	      localStorage.setItem(sessionID, event.target.result);
+            // load file contents into local storage, keyed by sessionID
+          localStorage.setItem(sessionID, event.target.result);
 
-	      // reload page to URL with new sessionID appended
-	      window.location.assign(window.location.origin + window.location.pathname + '#' + sessionID);
+          // reload page to URL with new sessionID appended
+          window.location.assign(window.location.origin + window.location.pathname + '#' + sessionID);
           window.location.reload();
         };
-	    fr.readAsText(file);
+	      fr.readAsText(file);
       });
+      */
     },
 
     hide: function() {
@@ -62,9 +63,10 @@
     template: $.Handlebars.compile([
        '<div id="load-workspace-panel">',
          '<h3>{{t "loadWorkspace"}}</h3>',
-         '<span>',
-           '<input id="load-workspace-file" type="file"></input>',
-         '</span>',
+         '<form action="" method="post" enctype="multipart/form-data">',
+           '<input name="load-workspace-file" type="file"></input>',
+           '<input type="submit" value="Load">',
+         '</form>',
        '</div>'
     ].join(''))
   };
